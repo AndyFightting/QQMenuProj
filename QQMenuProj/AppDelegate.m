@@ -17,11 +17,23 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-
-    ViewController* viewVC = [[ViewController alloc] init];
-    viewVC.title =@"QQ menu";
+    UITabBarController *tb=[[UITabBarController alloc]init];
+    self.window.rootViewController=tb;
     
-    SGMNavigationController* nav = [[SGMNavigationController alloc]initWithRootViewController:viewVC];
+    //b.创建子控制器
+    ViewController *c1=[[ViewController alloc]init];
+    c1.tabBarItem.title=@"消息";
+    
+    ViewController *c2=[[ViewController alloc]init];
+    c2.title = @"联系人";
+    
+    tb.viewControllers=@[c1,c2];
+    
+
+//    ViewController* viewVC = [[ViewController alloc] init];
+//    viewVC.title =@"QQ menu";
+    
+    SGMNavigationController* nav = [[SGMNavigationController alloc]initWithRootViewController:tb];
     //开启手势返回
     nav.isSupportPenGesture = YES;
     //动画类型
@@ -30,9 +42,18 @@
     nav.isSupportLeftMenu = YES;
     nav.isSupportRightMenu = YES;
     
+    
     self.window.rootViewController = nav;
     [self.window makeKeyAndVisible];
     return YES;
+    
+    
+    
+
+
+    
+    
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
